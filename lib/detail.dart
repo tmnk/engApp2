@@ -21,7 +21,7 @@ class _FlutterDemoState extends State<DetailScreen> {
   String _text = 'w';
   List data;
   Future getData() {
-    var fire = Firestore.instance.collection("data").add({"ver 1" : "hrrll"});
+    var fire = Firestore.instance.collection("backup").add({"data" : "hrrll"});
   }
 //  Collection _data = new Collection(0, [], DateTime.now());
   @override

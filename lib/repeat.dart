@@ -71,18 +71,18 @@ class _FlutterDemoState extends State<Repeat> {
                 onPressed: (_mode != "EN" && _mode != "RU")  ? null : () {
                       setState(() {
                         if (_mode == "EN") {
-                          _secondWord = _currWord.ru;
+                          _secondWord = " - " + _currWord.ru;
                           _mode = "-e";
                         }
                         else {
-                          _secondWord = _currWord.en;
+                          _secondWord = " - " + _currWord.en;
                           _mode = "-r";
 
                         }
                       });
                 },
                 child:
-                      Center(child: Text('\t$_firstWord \n\n\t $_secondWord')),
+                      Center(child: Text('\t$_firstWord  $_secondWord')),
               ),
               ),
             ),

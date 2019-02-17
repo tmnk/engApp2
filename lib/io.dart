@@ -67,7 +67,7 @@ class CounterStorage {
  ///////////////////////////////////
 }
 
-var jsonData = [{"en": "structure", "ru": "структура"},
+List jsonData = [{"en": "structure", "ru": "структура"},
 {"en": "hair", "ru": "волосы"},
 {"en": "check", "ru": "проверить"},
 {"en": "brave", "ru": "храбрый"},
