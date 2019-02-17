@@ -28,25 +28,19 @@ class _FlutterDemoState extends State<Learn> {
   void initState() {
     super.initState();
     widget.storage.readJson().then((String value) {
-      setState(() {
+      widget.storage.readText().then((List CNT){
+        setState(() {
           data = jsonDecode(value);
-          _currCount = data.length - 1;
+          _currCount = CNT[0];
           _firstWord = data[_currCount]["en"];
           _secondWord = data[_currCount]["ru"];
           count = 0;
+        });
+        print(data.length);
       });
-      print(data.length);
     });
   }
 
-  Future<File> _incrementCounter() {
-    setState(() {
-      _text += 's';
-    });
-    return widget.storage.writeText(_text);
-    // Write the variable as a string to the file.
-
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +123,9 @@ class _FlutterDemoState extends State<Learn> {
       MaterialPageRoute(builder: (context) => Repeat(storage: CounterStorage(), repeatNum : 1, jsonData : new Collection(0, d, DateTime.now()))), ///////////////////////Стору надо послать
     );
     if (result != null) {
-      print(result.jsonReturn());
+      var tmp = result.jsonReturn();
+      widget.storage.writeText(_currCount, tmp);
+      print(tmp);
     }
     else {
       setState((){

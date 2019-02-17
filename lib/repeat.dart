@@ -32,7 +32,7 @@ class _FlutterDemoState extends State<Repeat> {
   @override
   void initState() {
     super.initState();
-    widget.storage.readText().then((String value) {
+//    widget.storage.readText().then((List value) {
       setState(() {
         data = widget.jsonData.data;
         succesData = new List();
@@ -43,17 +43,9 @@ class _FlutterDemoState extends State<Repeat> {
         _currNum = 0;
       });
     print(_currWord.ru);
-    });
+//    });
   }
 
-  Future<File> _incrementCounter() {
-    setState(() {
-      _text += 's';
-    });
-    return widget.storage.writeText(_text);
-    // Write the variable as a string to the file.
-
-  }
 
   @override
   Widget build(BuildContext context) {

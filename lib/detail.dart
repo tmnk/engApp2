@@ -20,28 +20,32 @@ class DetailScreen extends StatefulWidget {
 class _FlutterDemoState extends State<DetailScreen> {
   String _text = 'w';
   List data;
-  Future getData() {
-    var fire = Firestore.instance.collection("backup").add({"data" : "hrrll"});
+  String learning;
+
+  int counter = 0, _len = 0;
+  Future getData(String data, String lr, int cnt) {
+    Firestore.instance.collection("backup").add({"data" : data});
+    Firestore.instance.collection("backup").add({"learning" : lr});
+    Firestore.instance.collection("backup").add({"cnt" : cnt});
+    Firestore.instance.collection("backup").add({"success" : jsonEncode([])});
   }
 //  Collection _data = new Collection(0, [], DateTime.now());
-  @override
   void initState() {
     super.initState();
-    widget.storage.readText().then((String value) {
-      setState(() {
-
+    widget.storage.readJson().then((String value) {
+      widget.storage.readText().then((List CNT){
+        setState(() {
+          data = jsonDecode(value);
+          counter = CNT[0];
+          learning = CNT[1];
+          _len = data.length;
+        });
+        print(CNT);
       });
+      print(value);
     });
   }
 
-  Future<File> _incrementCounter() {
-    setState(() {
-      _text += 's';
-    });
-    return widget.storage.writeText(_text);
-    // Write the variable as a string to the file.
-
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +53,16 @@ class _FlutterDemoState extends State<DetailScreen> {
         appBar: AppBar(title: Text('Sync')),
         body: Column(
           children: <Widget>[
+            Center(
+                child : Text("Выучено : 0")
+            ),
+
+            Center(
+                child : Text("Слова в процессе : ${_len - counter}")
+            ),
+            Center(
+                child : Text("Осталось : ${_len}")
+            ),
             Padding(
               child : SizedBox(
                 width: MediaQuery.of(context).size.width ,
@@ -56,9 +70,8 @@ class _FlutterDemoState extends State<DetailScreen> {
                 child: Center(child:
                 RaisedButton(
                   color : Colors.lightGreenAccent,
-                  onPressed: () => getData(),
-                  child:
-                  Center(child: Text('\tHi')),
+                  onPressed: () => getData(jsonEncode(data), jsonEncode(learning), counter),
+                  child:  Text('Сохранить текущие данные'),
                 ),
                 ),
               ),
