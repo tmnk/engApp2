@@ -18,9 +18,9 @@ class CounterStorage {
     final path = await _localPath;
     return File('${path}/text.txt');
   }
-  Future<File> writeText(int counter, String success) async {
+  Future<File> writeText(int counter, String success, int trash) async {
     final file = await _localFile;
-    var a = jsonEncode([counter, success]);
+    var a = jsonEncode([counter, success, trash]);
     // Write the file
     return file.writeAsString(a);
   }
@@ -36,7 +36,7 @@ class CounterStorage {
     } catch (e) {
       // If encountering an error, return 0
 
-      return [999, []];
+      return [999, [], 0];
     }
   }
 

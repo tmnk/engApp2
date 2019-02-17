@@ -22,6 +22,7 @@ class _FlutterDemoState extends State<Learn> {
   String _firstWord = "En", _secondWord = "RU";
   int _currCount = 0;
   int count;
+  int _trash = 0;
   List data, trash = new List(), _d3ata = new List(), _d9ata = new List(), _d27ata = new List();
 //  Collection _data = new Collection(0, [], DateTime.now());
   @override
@@ -62,13 +63,13 @@ class _FlutterDemoState extends State<Learn> {
                         _d3ata.add(new Word(_firstWord, _secondWord, 0, []));
                         if (_d9ata.length == 6) {
                           _d9ata += _d3ata;
-                           _navigateToRepeat(context, _d9ata, 9);
+                           _navigateToRepeat(context, _d9ata, 9 + _trash);
                           _d27ata += _d9ata;
                           //if _d27 == 18 ...
                           _d9ata = new List();
                         }
                         else {
-                           _navigateToRepeat(context, _d3ata, 3);
+                           _navigateToRepeat(context, _d3ata, 3 + _trash);
                           _d9ata += _d3ata;
                         }
                         _d3ata = new List();
@@ -102,7 +103,12 @@ class _FlutterDemoState extends State<Learn> {
                 RaisedButton(
                   color : Colors.red,
                   onPressed:  () {
-
+                    setState(() {
+                      _trash++;
+                      _currCount--;
+                      _firstWord = data[_currCount]["en"];
+                      _secondWord = data[_currCount]["ru"];
+                    });
                   },
                   child:
                   Center(child: Text('Not learn')),
@@ -124,7 +130,7 @@ class _FlutterDemoState extends State<Learn> {
     );
     if (result != null) {
       var tmp = result.jsonReturn();
-      widget.storage.writeText(_currCount, tmp);
+      widget.storage.writeText(_currCount, tmp, _trash);
       print(tmp);
     }
     else {
