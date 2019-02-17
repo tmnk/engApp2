@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "274830923878",
+    "firebase_url": "https://engapp-82dd2.firebaseio.com",
+    "project_id": "engapp-82dd2",
+    "storage_bucket": "engapp-82dd2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274830923878:android:866d2134f805083e",
+        "android_client_info": {
+          "package_name": "com.example.engapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "274830923878-mv4vl69n6s6l043r48a993jnfbprf9b4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbt_vK_XhJ8dP1GwjtkJkTcrQjdp5wTjw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
