@@ -24,11 +24,11 @@ class _FlutterDemoState extends State<DetailScreen> {
   int _trash = 0;
   int counter = 0, _len = 0;
   Future getData(String data, String lr, int cnt) {
-//    widget.storage.writeText(999, jsonEncode([]), 0);
-    Firestore.instance.collection("backup").add({"data" : data});
-    Firestore.instance.collection("backup").add({"learning" : lr});
-    Firestore.instance.collection("backup").add({"cnt" : cnt});
-    Firestore.instance.collection("backup").add({"success" : jsonEncode([])});
+    widget.storage.writeText(999, jsonEncode([]), 0);
+//    Firestore.instance.collection("backup").add({"data" : data});
+//    Firestore.instance.collection("backup").add({"learning" : lr});
+//    Firestore.instance.collection("backup").add({"cnt" : cnt});
+//    Firestore.instance.collection("backup").add({"success" : jsonEncode([])});
   }
 //  Collection _data = new Collection(0, [], DateTime.now());
   void initState() {

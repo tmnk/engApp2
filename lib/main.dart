@@ -101,7 +101,7 @@ class SelectionButton extends StatelessWidget {
     Word a = new Word("Easy", "Легко", 0, [4]);
     Word b = new Word("Normal", "Средне", 0, [4, 5]);
     Word c = new Word("Hard", "Сложно", 0, [4, 3 , 2]);
-    Collection l = new Collection(0, [a,b,c], new DateTime.utc(1989, 11, 9));
+    Collection l = new Collection(0, [a,b,c]);
     print(l.jsonReturn());
 
     // Navigator.push returns a Future that will complete after we call

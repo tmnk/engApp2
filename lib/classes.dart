@@ -24,8 +24,7 @@ class Word {
 class Collection {
   List data = new List();
   int collectionId;
-  DateTime time;
-  Collection(this.collectionId, this.data, this.time);
+  Collection(this.collectionId, this.data);
   String jsonReturn() {
     if (data.length == 0) return '';
     var tmpList = new List();

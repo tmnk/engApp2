@@ -41,8 +41,9 @@ class _FlutterDemoState extends State<Repeat> {
         _secondWord = '';
         _mode = "EN";
         _currNum = 0;
+//        if (widget.repeatNum == 0) Navigator.pop(context, null);
       });
-    print(_currWord.ru);
+//      print(_currWord.ru);
 //    });
   }
 
@@ -53,6 +54,11 @@ class _FlutterDemoState extends State<Repeat> {
       appBar: AppBar(title: Text('Repeat')),
       body: Column(
         children: <Widget>[
+          Center(
+            child : Text(
+              "${data.length + 1} / ${data.length + succesData.length + 1}"
+            )
+          ),
           Padding(
             child : SizedBox(
               width: MediaQuery.of(context).size.width ,
@@ -174,8 +180,8 @@ class _FlutterDemoState extends State<Repeat> {
       }
       else if (data.length == 0 && _mode == "-r") { // Конец целого обхода
         _currNum++;
-        if (_currNum == widget.repeatNum) { // Конец всех обходов
-          Navigator.pop(context, new Collection(widget.jsonData.collectionId, succesData, widget.jsonData.time));
+        if (_currNum >= widget.repeatNum) { // Конец всех обходов
+          Navigator.pop(context, new Collection(widget.jsonData.collectionId, succesData));
         }
         else {
           data = succesData;

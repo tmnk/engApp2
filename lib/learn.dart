@@ -8,6 +8,7 @@ import './io.dart';
 import './classes.dart';
 import 'dart:math';
 import './repeat.dart';
+import './time/time.dart';
 
 class Learn extends StatefulWidget {
   final CounterStorage storage;
@@ -39,6 +40,7 @@ class _FlutterDemoState extends State<Learn> {
         });
         print(data.length);
       });
+
     });
   }
 
@@ -61,16 +63,25 @@ class _FlutterDemoState extends State<Learn> {
                       count++;
                       if (count == 3) {
                         _d3ata.add(new Word(_firstWord, _secondWord, 0, []));
-                        if (_d9ata.length == 6) {
-                          _d9ata += _d3ata;
+                        count += 3;
+                        print('>9>>' + _d9ata.length.toString() + " " + _d3ata.length.toString() + " | " + count.toString());
+                        _d9ata += _d3ata;
+                        print('9--' + _d9ata.length.toString());
+                        if (_d9ata.length == 9) {
                            _navigateToRepeat(context, _d9ata, 9 + _trash);
                           _d27ata += _d9ata;
-                          //if _d27 == 18 ...
+                          print('27--' + _d27ata.length.toString());
+                          if (_d27ata.length == 27) {
+                            _navigateToRepeat(context, _d27ata, 27 + _trash);
+                            ///Save to succes
+                            ///
+                            _d27ata = new List();
+                          }
                           _d9ata = new List();
                         }
                         else {
+                          print('3--');
                            _navigateToRepeat(context, _d3ata, 3 + _trash);
-                          _d9ata += _d3ata;
                         }
                         _d3ata = new List();
                         count = 0;
@@ -82,8 +93,9 @@ class _FlutterDemoState extends State<Learn> {
                       _currCount--;
                       _firstWord = data[_currCount]["en"];
                       _secondWord = data[_currCount]["ru"];
+                      print('3------' + _d3ata.length.toString());
                     });
-                    print(_currCount);
+//                    print(_currCount);
                   },
 
                   child:
@@ -122,16 +134,26 @@ class _FlutterDemoState extends State<Learn> {
 
     );
   }
+
+
   _navigateToRepeat(BuildContext context, List d, int r) async {
 
     final result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => Repeat(storage: CounterStorage(), repeatNum : 1, jsonData : new Collection(0, d, DateTime.now()))), ///////////////////////Стору надо послать
+      MaterialPageRoute(builder: (context) => Repeat(storage: CounterStorage(), repeatNum : 1, jsonData : new Collection(0, d))), ///////////////////////Стору надо послать
     );
     if (result != null) {
       var tmp = result.jsonReturn();
-      widget.storage.writeText(_currCount, tmp, _trash);
-      print(tmp);
+      if (d.length == 27) {
+        widget.storage.writeSuccessJson(tmp, timeNow());
+        widget.storage.writeText(_currCount, "[]", _trash);
+        Navigator.pop(context);
+      }
+      else {
+        widget.storage.writeText(_currCount, tmp, _trash);
+      }
+//      print(tmp);
+      return 1;
     }
     else {
       setState((){
@@ -139,6 +161,7 @@ class _FlutterDemoState extends State<Learn> {
         count = 0;
         _firstWord = data[_currCount]["en"];
         _secondWord = data[_currCount]["ru"];
+        return 0;
       });
     }
   }

@@ -12,6 +12,34 @@ class CounterStorage {
 
     return directory.path;
   }
+
+  Future<File> get _localSuccessFile async {
+    final path = await _localPath;
+    return File('${path}/success.json');
+  }
+
+  Future<File> writeSuccessJson(String success, int id) async {
+    final file = await _localSuccessFile;
+    var a = jsonEncode([id, success]);
+    // Write the file
+    return file.writeAsString(a);
+  }
+
+  Future<List> readSuccessJson() async {
+    try {
+      final file = await _localSuccessFile;
+
+      // Read the file
+      String contents = await file.readAsString();
+
+      return jsonDecode(contents);
+    }
+    catch (e) {
+      // If encountering an error, return 0
+      return [0, []];
+    }
+  }
+
 //////////////////////For every file
 
   Future<File> get _localFile async {
