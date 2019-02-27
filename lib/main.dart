@@ -4,6 +4,7 @@ import './repeat.dart';
 import './learn.dart';
 import './io.dart';
 import './classes.dart';
+import './search.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
@@ -68,6 +69,22 @@ class SelectionButton extends StatelessWidget {
             height: 100,
             child: Center(child:
             RaisedButton(
+              color : Colors.cyan,
+              onPressed: () {
+                _navigateToSearch(context);
+              },
+              child: Center(child: Text('Seach')),
+            ),
+            ),
+          ),
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        ),
+        Padding(
+          child : SizedBox(
+//            width: 100,
+            height: 100,
+            child: Center(child:
+            RaisedButton(
               color : Colors.brown,
               onPressed: () {
                 _navigateToSync(context);
@@ -111,6 +128,18 @@ class SelectionButton extends StatelessWidget {
       MaterialPageRoute(builder: (context) => Repeat(storage: CounterStorage(), repeatNum : 2, jsonData : l)), ///////////////////////Стору надо послать
     );
     if (result != null) print(result.jsonReturn());
+  }
+  _navigateToSearch(BuildContext context) async {
+    // Navigator.push returns a Future that will complete after we call
+    // Navigator.pop on the Selection Screen!
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Search(storage: CounterStorage())),
+    );
+    print(result.toString());
+    // After the Selection Screen returns a result, hide any previous snackbars
+    // and show the new result!
+
   }
   _navigateToSync(BuildContext context) async {
     // Navigator.push returns a Future that will complete after we call

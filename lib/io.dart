@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import './data/word2000.dart';
+
 
 
 class CounterStorage {
@@ -40,6 +42,31 @@ class CounterStorage {
     }
   }
 
+
+  Future<File> get _jsonPureFile async {
+    final path = await _localPath;
+    return File('${path}/words.json');
+  }
+  Future<File> writePureJson(List data) async {
+    final file = await _jsonPureFile;
+
+    // Write the file
+    return file.writeAsString(jsonEncode(data));
+  }
+
+  Future<List> readPureJson() async {
+    try {
+      final file = await _jsonPureFile;
+
+      // Read the file
+      String contents = await file.readAsString();
+
+      return jsonDecode(contents);
+    } catch (e) {
+      writePureJson(allWords);
+      return allWords;
+    }
+  }
 //////////////////////For every file
 
   Future<File> get _localFile async {

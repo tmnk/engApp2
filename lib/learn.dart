@@ -64,23 +64,17 @@ class _FlutterDemoState extends State<Learn> {
                       if (count == 3) {
                         _d3ata.add(new Word(_firstWord, _secondWord, 0, []));
                         count += 3;
-                        print('>9>>' + _d9ata.length.toString() + " " + _d3ata.length.toString() + " | " + count.toString());
                         _d9ata += _d3ata;
-                        print('9--' + _d9ata.length.toString());
                         if (_d9ata.length == 9) {
                            _navigateToRepeat(context, _d9ata, 9 + _trash);
                           _d27ata += _d9ata;
-                          print('27--' + _d27ata.length.toString());
                           if (_d27ata.length == 27) {
                             _navigateToRepeat(context, _d27ata, 27 + _trash);
-                            ///Save to succes
-                            ///
                             _d27ata = new List();
                           }
                           _d9ata = new List();
                         }
                         else {
-                          print('3--');
                            _navigateToRepeat(context, _d3ata, 3 + _trash);
                         }
                         _d3ata = new List();

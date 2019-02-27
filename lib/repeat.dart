@@ -90,6 +90,7 @@ class _FlutterDemoState extends State<Repeat> {
           Padding(
             child : SizedBox(
               width: MediaQuery.of(context).size.width ,
+              height: MediaQuery.of(context).size.height / 9 ,
               child: Center(child:
               RaisedButton(
                 color : Colors.green,
@@ -101,11 +102,12 @@ class _FlutterDemoState extends State<Repeat> {
               ),
               ),
             ),
-            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
           ),
           Padding(
             child : SizedBox(
               width: MediaQuery.of(context).size.width ,
+              height: MediaQuery.of(context).size.height / 9 ,
               child: Center(child:
               RaisedButton(
                 color : Colors.yellowAccent,
@@ -117,11 +119,12 @@ class _FlutterDemoState extends State<Repeat> {
               ),
               ),
             ),
-            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
           ),
           Padding(
             child : SizedBox(
               width: MediaQuery.of(context).size.width ,
+              height: MediaQuery.of(context).size.height / 9 ,
               child: Center(child:
               RaisedButton(
                 color : Colors.red,
@@ -133,7 +136,7 @@ class _FlutterDemoState extends State<Repeat> {
               ),
               ),
             ),
-            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
           ),
         ],
       )
@@ -180,7 +183,7 @@ class _FlutterDemoState extends State<Repeat> {
       }
       else if (data.length == 0 && _mode == "-r") { // Конец целого обхода
         _currNum++;
-        if (_currNum >= widget.repeatNum) { // Конец всех обходов
+        if (_currNum == widget.repeatNum) { // Конец всех обходов
           Navigator.pop(context, new Collection(widget.jsonData.collectionId, succesData));
         }
         else {
